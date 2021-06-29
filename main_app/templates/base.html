@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CatCollector</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  </head>
+  <body>
+    <header>
+        {% if user.is_authenticated %}
+        <span><a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a></span>
+        <span> | </span>
+        <span><a href="{% url 'logout' %}">Logout</a></span>
+        <span> | </span>
+        {% else %}
+        <span><a href="{% url 'login' %}">Login</a></span>
+        <span> | </span>
+        <span><a href="{% url 'signup' %}">SignUp</a></span>
+        {% endif %}
+        <a href="/cats">
+            <h1>catcollector</h1>
+        </a>
+      </header>
+      <hr />
+      
+     <a href="/cats">
+         <h1>catcollector</h1>
+     </a>
+     <a href="/cats/create">Add a New Cat!</a>
+    <hr />
+        {% block content %}
+        {% endblock %}
+      <footer>
+        All Rights Reserved, catcollector 2021
+      </footer>
+  </body>
+</html>
